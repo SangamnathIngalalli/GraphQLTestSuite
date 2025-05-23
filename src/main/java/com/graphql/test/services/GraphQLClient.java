@@ -1,5 +1,6 @@
 package com.graphql.test.services;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.graphql.test.config.ConfigManager;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -32,20 +33,15 @@ public class GraphQLClient {
     }
 
     private static class GraphQLRequest {
+        @JsonProperty("query")
         private final String query;
+        
+        @JsonProperty("variables")
         private final Object variables;
 
         public GraphQLRequest(String query, Object variables) {
             this.query = query;
             this.variables = variables;
-        }
-
-        public String getQuery() {
-            return query;
-        }
-
-        public Object getVariables() {
-            return variables;
         }
     }
 } 
